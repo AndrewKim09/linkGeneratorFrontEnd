@@ -77,12 +77,14 @@ export const FileDetails = ({ user }) => {
 							{fileData.map((file, index) => {
 								var size = file.file.data.length
 								if(file.file.data.length > 1000000) {
-									size = `${file.file.data.length / 1000000} MB`
+									size = `${Math.round(file.file.data.length / 1000000, 2)} MB`
 								}
 								else {
-									size = `${file.file.data.length / 1000} KB`
+									size = `${Math.round(file.file.data.length / 1000)} KB`
 								}
+								const date = new Date(file.id.date)
 								return (
+									
 								<tbody>
 									<tr key={index} className='fileRow'>
 										<td>{file.title}</td>
@@ -90,7 +92,7 @@ export const FileDetails = ({ user }) => {
 										<td><button onClick={() => {copyLink(index)}}><FontAwesomeIcon icon={faLink} style={{color: "grey"}}></FontAwesomeIcon></button></td>
 										<td>{file.type}</td>
 										<td>{size}</td>
-										<td>{file.id.date}</td>
+										<td>{date.toDateString()}</td>
 										<td><button onClick={(e) => {
 											e.preventDefault()
 											setFileData(fileData.filter((item) => item.id !== file.id))
