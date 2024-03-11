@@ -13,7 +13,6 @@ export const FileDetails = ({ user }) => {
 	const [addStatus, setAddStatus] = useState(false);
 
 	const downloadFile = (binaryData, fileName) => {
-		console.log(binaryData, fileName)
 		const url = window.URL.createObjectURL(new Blob([binaryData]));
 		const link = document.createElement('a');
 		link.href = url;
@@ -38,11 +37,9 @@ export const FileDetails = ({ user }) => {
 		const fetchFileData = async () => {
 			setLoading(true)
 			if (user.files && user.files.length > 0) {
-				console.log(user.files)
 				const formData = new FormData()
 				formData.append('files', user.files)
 				try {
-					console.log(formData.getAll('files'))
 					const response = await axios.post(`http://localhost:8080/api/v1/files/all`, formData)
 					setFileData(response.data)
 				} catch (error) {
@@ -50,21 +47,12 @@ export const FileDetails = ({ user }) => {
 				}
 			}
 			else {
-				console.log(user)
-				console.log('no files')
 			}
 			setLoading(false)
 		};
 
 		fetchFileData();
 	}, [user, addStatus]);
-
-	useEffect(() => {
-		if(fileData){
-			console.log(fileData)
-		}
-
-	}, [fileData])
 	return (
 		<div>
 			{!loading ?(
@@ -87,7 +75,6 @@ export const FileDetails = ({ user }) => {
 								</tr>
 							</tbody>
 							{fileData.map((file, index) => {
-								console.log(file.file.data.length);
 								var size = file.file.data.length
 								if(file.file.data.length > 1000000) {
 									size = `${file.file.data.length / 1000000} MB`

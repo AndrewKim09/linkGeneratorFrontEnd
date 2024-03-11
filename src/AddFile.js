@@ -24,11 +24,8 @@ export const AddFile = ({setAddStatus, user}) => {
 		}
 		else{
 			for(let i = 0; i < fileList.length; i++) {
-				console.log(fileList)
-				console.log(user)
 				const formData = new FormData()
 				formData.append('file', fileList[i])
-				console.log(user.id)
 				formData.append('id', user.id)
 				formData.append('title', fileList[i].name)
 
@@ -37,7 +34,6 @@ export const AddFile = ({setAddStatus, user}) => {
 					const response = await axios.post('http://localhost:8080/api/v1/files/add', formData)
 					if(response.status === 201) {
 						setNotification(true)
-						console.log("file uploaded successfully")
 
 						setTimeout(() => {
 							setNotification(false)
@@ -81,15 +77,10 @@ export const AddFile = ({setAddStatus, user}) => {
 				fileListToAdd.push(e.originalEvent.dataTransfer.files[i])
 			}
 
-			console.log("fileListToAdd: " +  fileListToAdd)
-
 			setFileList((fileList) => [...fileList, ...fileListToAdd]);
 		})
 	}
 
-	useEffect(() => {
-		console.log(fileList);
-	},[fileList])
 
 	useEffect(() => {
 		dropFunction()

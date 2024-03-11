@@ -17,8 +17,6 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-      console.log('saving user')
-      console.log(user)
       if(user.id === undefined) {
         console.log('no user')
         return
