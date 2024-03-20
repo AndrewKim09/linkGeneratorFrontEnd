@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, HashRouter } from 'react-router-dom';
 import { FileDetails } from './FileDetails';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
@@ -25,7 +25,7 @@ const App = () => {
     }, [user])
 
     return (
-        <Router>
+        <HashRouter>
 					{activateNotification ? <Notification checkmark={true} text={"sign up is successful"} /> : null}
           <Routes>
             <Route path="/" element={<Login setGlobalUser={setGlobalUser}/>}/>
@@ -33,7 +33,7 @@ const App = () => {
             <Route path="/signUp" element={<SignUp setGlobalUser={setGlobalUser} setActivateNotification={setActivateNotification}/>}/>
         	</Routes>
             
-        </Router>
+        </HashRouter>
     );
 };
 
