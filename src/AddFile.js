@@ -31,7 +31,7 @@ export const AddFile = ({setAddStatus, user}) => {
 
 
 				try {
-					const response = await axios.post('http://localhost:8080/api/v1/files/add', formData)
+					const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/files/add', formData)
 					if(response.status === 201) {
 						setNotification(true)
 

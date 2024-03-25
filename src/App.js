@@ -18,7 +18,6 @@ const App = () => {
 
     useEffect(() => {
       if(user.id === undefined) {
-        console.log('no user')
         return
       }
       window.localStorage.setItem('user', JSON.stringify(user));

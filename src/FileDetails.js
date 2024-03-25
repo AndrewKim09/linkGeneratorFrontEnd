@@ -9,7 +9,6 @@ import { faDeleteLeft, faDownload, faLink } from '@fortawesome/free-solid-svg-ic
 export const FileDetails = ({ user }) => {
 	const [fileData, setFileData] = useState([])
 	const [loading, setLoading] = useState(true)
-	const { name } = useParams()
 	const [addStatus, setAddStatus] = useState(false);
 
 	const downloadFile = (binaryData, fileName) => {
@@ -23,7 +22,7 @@ export const FileDetails = ({ user }) => {
 	}
 
 	const copyLink = (index) => {
-		navigator.clipboard.writeText(`https://linkgeneratorbackend.fly.dev/api/v1/files/download/${user.files[index]}`)
+		navigator.clipboard.writeText(`https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/files/download/${user.files[index]}`)
 		alert('Link copied to clipboard')
 	}
 	
@@ -40,7 +39,7 @@ export const FileDetails = ({ user }) => {
 				const formData = new FormData()
 				formData.append('files', user.files)
 				try {
-					const response = await axios.post(`http://localhost:8080/api/v1/files/all`, formData)
+					const response = await axios.post(`https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/files/all`, formData)
 					setFileData(response.data)
 				} catch (error) {
 					console.error('Error fetching file data:', error)
@@ -85,7 +84,7 @@ export const FileDetails = ({ user }) => {
 								const date = new Date(file.id.date)
 								return (
 									
-								<tbody>
+								<tbody key={index}>
 									<tr key={index} className='fileRow'>
 										<td>{file.title}</td>
 										<td className=''><button onClick={() => {downloadFile(file.file, file.title)}}><FontAwesomeIcon icon={faDownload} style={{color: "green"}}></FontAwesomeIcon></button></td>

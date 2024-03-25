@@ -15,8 +15,9 @@ export const Login = ({setGlobalUser}) => {
         if(!loading){
 
           try {
+            console.log("getting data");
               setLoading(true);
-              const response = await axios.post('https://linkgeneratorbackend.fly.dev/api/v1/users/login', data)
+              const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/users/login', data)
                   if (response.status === 200){
                       setGlobalUser(response.data);
                       navigate('/files');
