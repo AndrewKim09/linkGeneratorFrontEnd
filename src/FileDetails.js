@@ -23,7 +23,7 @@ export const FileDetails = ({ user }) => {
 	}
 
 	const copyLink = (index) => {
-		navigator.clipboard.writeText(`http://localhost:8080/api/v1/files/download/${user.files[index]}`)
+		navigator.clipboard.writeText(`https://linkgeneratorbackend.fly.dev/api/v1/files/download/${user.files[index]}`)
 		alert('Link copied to clipboard')
 	}
 	

@@ -16,7 +16,7 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 		if(!disabled)
 		{	try {
 				setDisabled(true)
-				const response = await axios.post('http://localhost:8080/api/v1/users',qs.stringify(data)).then((response) => {
+				const response = await axios.post('https://linkgeneratorbackend.fly.dev/api/v1/users',qs.stringify(data)).then((response) => {
 					if (response.status === 201){
 						navigate('/')
 					}
