@@ -8,20 +8,20 @@ import { useNavigate } from 'react-router-dom'
 export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 	const[data, setData] = useState({username: '', password: ''})
 	const [error, setError] = useState('')
-	const [disabled, setDisabled] = useState(false)
+	const [loading, setLoading] = useState(false)
 	const navigate = useNavigate();
 
 	var handleSubmit = async (e) => {
 		e.preventDefault()
-		if(!disabled)
+		if(!loading)
 		{	try {
-				setDisabled(true)
+				setLoading(true)
 				const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/users',qs.stringify(data)).then((response) => {
 					if (response.status === 201){
 						navigate('/')
 					}
 					else {
-						setDisabled(false)
+						setLoading(false)
 						setError('Username already exists')
 					}
 				})
@@ -29,7 +29,7 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 			} catch (error) {
 				setError('Username already exists')
 			}}
-			setDisabled(false);
+			setLoading(false);
 	}
 
 	useEffect(() => {
@@ -102,6 +102,12 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 								Sign Up
 							</button>
 						</div>
+
+						{loading ? 
+							<div className='mt-10 loading w-[100px] h-[100px] mx-auto'/>
+							:
+							null
+						}
 					</div>
 
 				</div>
