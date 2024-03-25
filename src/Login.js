@@ -98,14 +98,23 @@ export const Login = ({setGlobalUser}) => {
           </div>
 
           <p className="mt-4 text-sm text-center text-gray-500">
-            <a href="signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <a href="#/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               SignUp here
             </a>
-
+            
+            {/* FORGOT PASSWORD. FINISH THIS LATER
             <a href="#" className="ml-5 font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
+              Forgot password?
+            </a> 
+            */}
+            
           </p>
+          {loading ? 
+            <div className='mt-10 loading w-[100px] h-[100px] mx-auto'>
+            </div>
+            :
+            null
+          }
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ body{
 }
 
 .chainImage{
-  background-image: url('./Chain.svg');
+  background-image: url('./images/Chain.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -35,7 +35,7 @@ body{
 
 
 .checkmark{
-  background-image: url('./checkmark.png');
+  background-image: url('./images/checkmark.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -46,7 +46,7 @@ body{
 }
 
 .AddButton{
-  background-image: url('./add.svg');
+  background-image: url('./images/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -127,4 +127,11 @@ body{
   td:last-child{
     border-top-right-radius: 10px;
   }
+}
+
+.loading{
+  background-image: url('./images/loading.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
