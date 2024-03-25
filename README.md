@@ -1,8 +1,10 @@
 # Getting Started with Create React App
 
-https://github.com/facebook/create-react-app
+[https://github.com/facebook/create-react-app](https://andrewkim09.github.io/linkGeneratorFrontEnd/)
 
-I decided to build the backend using java spring just so that I could challenge myself while learning about apis. I know that doing it this way is very unpractical but It was a challenge that I enjoyed. If you are to use it please delete files you dont need and try not to upload massive files. I have set the limit at 256mb
+I decided to build the backend using java spring just so that I could challenge myself while learning about apis. I know that doing it this way is very unpractical but It was a challenge that I enjoyed. I used fly.io as the host sent the dockerized version of the spring api
+
+If you are to use it please delete files you dont need and try not to upload massive files. I have set the limit at 256mb
 
 ## Available Scripts
 
