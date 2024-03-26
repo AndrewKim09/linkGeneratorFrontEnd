@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/linkGeneratorFrontEnd/static/css/main.ddf7a6c2.css",
-    "main.js": "/linkGeneratorFrontEnd/static/js/main.04c7e1d3.js",
+    "main.css": "/linkGeneratorFrontEnd/static/css/main.371bfcdc.css",
+    "main.js": "/linkGeneratorFrontEnd/static/js/main.a0b91ee0.js",
     "static/media/pdf.worker.min.js": "/linkGeneratorFrontEnd/static/media/pdf.worker.min.baeb004d3fc47af4e978.js",
     "static/media/checkmark.png": "/linkGeneratorFrontEnd/static/media/checkmark.de9b3a65ac5651a3bb05.png",
+    "static/media/loading.svg": "/linkGeneratorFrontEnd/static/media/loading.1885ab4bf6af1ac94f7f.svg",
     "static/media/Chain.svg": "/linkGeneratorFrontEnd/static/media/Chain.f7cb47c816cb7cef010b.svg",
-    "index.html": "/linkGeneratorFrontEnd/index.html",
     "static/media/add.svg": "/linkGeneratorFrontEnd/static/media/add.99056f3969e366d6303b.svg",
-    "main.ddf7a6c2.css.map": "/linkGeneratorFrontEnd/static/css/main.ddf7a6c2.css.map",
-    "main.04c7e1d3.js.map": "/linkGeneratorFrontEnd/static/js/main.04c7e1d3.js.map"
+    "index.html": "/linkGeneratorFrontEnd/index.html",
+    "main.371bfcdc.css.map": "/linkGeneratorFrontEnd/static/css/main.371bfcdc.css.map",
+    "main.a0b91ee0.js.map": "/linkGeneratorFrontEnd/static/js/main.a0b91ee0.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddf7a6c2.css",
-    "static/js/main.04c7e1d3.js"
+    "static/css/main.371bfcdc.css",
+    "static/js/main.a0b91ee0.js"
   ]
 }
