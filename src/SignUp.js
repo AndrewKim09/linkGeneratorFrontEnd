@@ -46,7 +46,7 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 					/>
 					<div>
 						<h2 className="relative mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
-							<FontAwesomeIcon className='absolute left-0 top-[50%] translate-y-[-50%] cursor-pointer' icon={faArrowLeft} onClick={() => {window.location.href="/"}}/>
+							<FontAwesomeIcon className='absolute left-0 top-[50%] translate-y-[-50%] cursor-pointer' icon={faArrowLeft} onClick={() => {window.location.href="/linkGeneratorFrontEnd/"}}/>
 							<span>Sign Up an account</span>
 						</h2>
 					</div>
