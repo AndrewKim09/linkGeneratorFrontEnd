@@ -98,7 +98,7 @@ export const Login = ({setGlobalUser}) => {
           </div>
 
           <p className="mt-4 text-sm text-center text-gray-500">
-            <a href="#/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <a onClick={() => {navigate("/signUp")}} className="font-semibold leading-6 text-indigo-600 cursor-pointer hover:text-indigo-500">
               SignUp here
             </a>
             
