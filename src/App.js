@@ -4,32 +4,36 @@ import { FileDetails } from './FileDetails';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
 import { Notification } from './Notification';
+import { ForgotPassword } from './ForgotPassword';
 
 const App = () => {
-    const [user, setGlobalUser] = useState({})
 		const [activateNotification, setActivateNotification] = useState(false)
+    const [notificationText, setNotificationText] = useState('check your email for activation link')
+    // const [globalUser, setGlobalUser] = useState({})
 
-    useEffect(() => {
-      const localUser = window.localStorage.getItem('user');
-      if(localUser) {
-        setGlobalUser(JSON.parse(localUser));
-      }
-    }, [])
+    // useEffect(() => {
+    //   const localUser = window.localStorage.getItem('user');
+    //   if(localUser) {
+    //     setGlobalUser(JSON.parse(localUser));
+    //   }
+    // }, [])
 
-    useEffect(() => {
-      if(user.id === undefined) {
-        return
-      }
-      window.localStorage.setItem('user', JSON.stringify(user));
-    }, [user])
+    // useEffect(() => {
+    //   if(user.id === undefined) {
+    //     return
+    //   }
+    //   window.localStorage.setItem('user', JSON.stringify(user));
+    // }, [user])
 
     return (
         <HashRouter>
-					{activateNotification ? <Notification checkmark={true} text={"sign up is successful"} /> : null}
+					{activateNotification ? <Notification checkmark={true} text={notificationText} /> : null}
           <Routes>
-            <Route path="/" element={<Login setGlobalUser={setGlobalUser}/>}/>
-            <Route path="/files" element={<FileDetails user={user} setGlobalUser={setGlobalUser}/>} />
-            <Route path="/signUp" element={<SignUp setGlobalUser={setGlobalUser} setActivateNotification={setActivateNotification}/>}/>
+            <Route path="/" element={<Login/>}/>
+            <Route path="/files" element={<FileDetails/>} />
+            <Route path="/signUp" element={<SignUp setActivateNotification={setActivateNotification} setNotificationText={setNotificationText}/>}/>
+            <Route path="/forgotPassword" element={<ForgotPassword/>} />
+            <Route path="/activate" element={<Login setNotificationText={setNotificationText} setActivateNotification={setActivateNotification}/>}/>
         	</Routes>
             
         </HashRouter>

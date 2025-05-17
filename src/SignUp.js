@@ -4,30 +4,60 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
+import { fetchSignInMethodsForEmail, getAuth, sendSignInLinkToEmail } from "firebase/auth";
 
-export const SignUp = ({setGlobalUser, setActivateNotification}) => {
+export const SignUp = ({setGlobalUser, setActivateNotification, setNotificationText}) => {
 	const[data, setData] = useState({username: '', password: ''})
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
 	const navigate = useNavigate();
+
+	const auth = getAuth();
+
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+	const actionCodeSettings = {
+		// URL you want to redirect back to. The domain (www.example.com) for this
+		// URL must be in the authorized domains list in the Firebase Console.
+		url: 'http://localhost:3000/#/activate',
+		// This must be true.
+		handleCodeInApp: true,
+	};
 
 	var handleSubmit = async (e) => {
 		e.preventDefault()
 		if(!loading)
 		{	try {
 				setLoading(true)
-				const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/users',qs.stringify(data)).then((response) => {
-					if (response.status === 201){
+
+				if(!emailRegex.test(data.email)){
+					setLoading(false)
+					setError('Invalid email address')
+					return
+				}
+
+				const checkEmail = await fetchSignInMethodsForEmail(auth, data.email);
+				if(checkEmail.length > 0){
+					setLoading(false)
+					setError('Email already exists')
+					return
+				}
+
+				sendSignInLinkToEmail(auth, data.email, actionCodeSettings)
+					.then(() => {
+					// The link was successfully sent. Inform the user.
+					// ...
+					setActivateNotification(true)
+					setNotificationText('Check your email for activation link')
+					
+					setTimeout(() => {
 						navigate('/')
-					}
-					else {
-						setLoading(false)
-						setError('Username already exists')
-					}
+					}, 2000)
 				})
+
 				
 			} catch (error) {
-				setError('Username already exists')
+				console.log("error", error);
 			}}
 			setLoading(false);
 	}
@@ -56,7 +86,7 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 					<div className="space-y-6">
 						<div>
 							<label className="flex text-sm font-medium leading-6 text-gray-900 ">
-								Username
+								Email
 								<span className='mt-auto ml-auto text-xs text-red-500 text-red'>{error}</span>
 							</label>
 							<div className="mt-2">
@@ -64,7 +94,7 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 									id="email"
 									name="username"
 									className="block w-full rounded-md border-0 py-2.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-									onChange={(e) => setData({...data, username: e.target.value})}
+									onChange={(e) => setData({...data, email: e.target.value})}
 								/>
 							</div>
 						</div>
@@ -74,11 +104,6 @@ export const SignUp = ({setGlobalUser, setActivateNotification}) => {
 								<label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
 									Password
 								</label>
-								<div className="text-sm">
-									<a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-										Forgot password?
-									</a>
-								</div>
 							</div>
 							<div className="mt-2">
 								<input

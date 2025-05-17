@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faX } from '@fortawesome/free-solid-svg-icons'
 import $ from 'jquery'
 import { Notification } from './Notification'
+import { getAuth } from 'firebase/auth'
 
 
 
@@ -25,13 +26,15 @@ export const AddFile = ({setAddStatus, user}) => {
 		else{
 			for(let i = 0; i < fileList.length; i++) {
 				const formData = new FormData()
+				const auth = getAuth();
+				
 				formData.append('file', fileList[i])
-				formData.append('id', user.id)
+				formData.append('id', auth.currentUser.email)
 				formData.append('title', fileList[i].name)
 
 
 				try {
-					const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/files/add', formData)
+					const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/api/v1/files/add`, formData)
 					if(response.status === 201) {
 						setNotification(true)
 
@@ -86,7 +89,7 @@ export const AddFile = ({setAddStatus, user}) => {
 		dropFunction()
 	},[])
   return (
-    <div className="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-60%] h-[60%] w-[100vh] bg-white z-20 rounded-xl overflow-auto">
+    <div className="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-60%] h-[60%] w-[80%] max-w-[850px] bg-white z-20 rounded-xl overflow-auto">
 			{notification ? 
 					<Notification checkmark={true} text={"File uploaded successfully"}/>
 				: 
@@ -121,9 +124,11 @@ export const AddFile = ({setAddStatus, user}) => {
 				})}
 			</div>
 
-			<button className='h-7 ml-[50%] translate-x-[-50%] bg-green-600 w-[10%] rounded-xl mt-3' onClick={uploadFiles}>
-				Submit
-			</button>
+			<div className='flex items-center justify-center'>
+				<button className='px-1 mt-3 text-black bg-green-600 h-7 w-fit rounded-xl ' onClick={uploadFiles}>
+					Submit
+				</button>
+			</div>
     </div>
   )
 }
