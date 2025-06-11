@@ -12,7 +12,6 @@ jobs:
       REACT_APP_FIREBASE_API_KEY: ${{ vars.REACT_APP_FIREBASE_API_KEY }}
       REACT_APP_BACKEND_API_URL: ${{ vars.REACT_APP_BACKEND_API_URL }}
 
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -28,9 +27,8 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      # Optional: Upload build artifacts
-      - name: Upload production-ready files
-        uses: actions/upload-artifact@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: react-build
-          path: build/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
