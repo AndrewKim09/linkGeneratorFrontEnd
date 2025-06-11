@@ -25,7 +25,7 @@ export const Login = ({setGlobalUser, setNotificationText, setActivateNotificati
           try {
             console.log("getting data");
               setLoading(true);
-              const response = await axios.post('https://linkgeneratorbackend-lingering-night-5957.fly.dev/api/v1/users/login', data)
+              const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/api/v1/users/login`, data)
               console.log("response", response);
               if (response.status === 200){
                   setGlobalUser(response.data);
